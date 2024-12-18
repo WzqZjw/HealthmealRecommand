@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>推荐的健康食谱</title>
+    <!-- 添加CSS样式 -->
+    <style>
+        /* 页面整体样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #ffecd2, #fcb69f); /* 渐变背景 */
+            color: #333;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-size: 36px;
+            color: #444;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        li {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            line-height: 1.6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        li:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        strong {
+            color: #f77a52;
+            font-size: 18px;
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        ul li {
+            animation: fadeIn 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面标题 -->
+    <h2>推荐的健康食谱</h2>
+
+    {% if recipes %}
+        <!-- 食谱列表 -->
+        <ul>
+            {% for recipe in recipes %}
+                <li>
+                    <strong>{{ recipe.name }}</strong> - {{ recipe.description }}，
+                    热量: {{ recipe.calories }} 卡路里
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <!-- 无数据提示 -->
+        <p>抱歉，没有找到符合条件的食谱！请修改筛选条件。</p>
+    {% endif %}
+</body>
+</html>

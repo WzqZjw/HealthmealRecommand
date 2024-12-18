@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康食谱推荐系统 - 登录</title>
+    <!-- 添加外部字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #87CEEB, #ADD8E6); /* 渐变背景 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* 系统标题 */
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* 系统介绍 */
+        .intro {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* 输入框和按钮样式 */
+        form label {
+            display: block;
+            text-align: left;
+            margin: 10px 0 5px;
+            color: #444;
+        }
+
+        form input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        form input:focus {
+            border-color: #87CEEB;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background: #87CEEB;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+        }
+
+        button:hover {
+            background: #5FB3D6;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* 注册链接 */
+        .register-link {
+            display: block;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #333;
+        }
+
+        .register-link a {
+            color: #87CEEB;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* 错误提示 */
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 标题 -->
+        <div class="title">欢迎来到健康食谱推荐系统</div>
+        <!-- 系统介绍 -->
+        <div class="intro">
+            本系统致力于为您提供个性化的健康食谱推荐服务。根据您的身高、体重、性别和地区，
+            精准推荐适合您的健康食谱，帮助您享受健康的生活方式。
+        </div>
+        <!-- 登录表单 -->
+        <form method="POST">
+            {% csrf_token %}
+            <label>用户名：</label>
+            <input type="text" name="username" placeholder="请输入用户名" required>
+            <label>密码：</label>
+            <input type="password" name="password" placeholder="请输入密码" required>
+            <button type="submit">登录</button>
+            <!-- 注册链接 -->
+            <div class="register-link">
+                没有账号？ <a href="{% url 'register' %}">去注册</a>
+            </div>
+            <!-- 登录错误提示 -->
+            {% if error %}
+                <div class="error-message">{{ error }}</div>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
